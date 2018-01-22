@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template.xhtml">
+<h:outputScript library="js" name="portuguese_calendar.js" />
+<ui:define name="content">
+	<h:form id="form_pag">
+		<div align="center">			
+				<h1 style="font-size: 18px">Pagamento anuidade de Lojas</h1>
+
+				<p:dataTable id="p_list" value="#{pagamentoLojaMB.pagamentos}" var="p" style="width:95%;text-align:center;font-size:10px;" emptyMessage="#{language.LBL_DATATABLE_NO_RECORD_FOUND}">
+					<p:column headerText="Nome do Loja" >
+						<h:outputText value="#{p.loja.nome}" />
+					</p:column>
+					<p:column headerText="Ano">
+						<p:spinner id="minMax" value="#{p.anoPagamento}"  max="#{pagamentoLojaMB.anoAtual}" min="1950" size="3" >
+							<p:ajax update="p_list" listener="#{pagamentoLojaMB.onChangeYearAtualizaPagamento(p)}" />
+						</p:spinner> 
+					</p:column>
+					<p:column headerText="Valor (R$)">
+						<p:inputText id="inputValor" value="#{p.valorDeposito}" size="7" /> 
+					</p:column>
+					<p:column headerText="Data comprovante Bancário">
+					
+					<p:calendar locale="pt"  value="#{p.dtComprovanteBancario}" pattern="dd/MM/yyyy"  size="7"  />
+					
+					</p:column>
+					<p:column headerText="N. Prancha">
+						<p:inputText value="#{p.nrPrancha}" size="7"  />
+					</p:column>
+					<p:column headerText="Data prancha">
+					<p:calendar locale="pt"  value="#{p.dtPrancha}" pattern="dd/MM/yyyy" size="7" />
+			
+					</p:column>
+					<p:column headerText="Motivo Diligência">
+						<p:inputText value="#{p.motivo}"  size="7" />
+					</p:column>
+					<p:column headerText="Data emissão diligência">
+						<p:calendar locale="pt"  value="#{p.dtEmissao}" pattern="dd/MM/yyyy"  size="7"  />
+					</p:column>
+					<p:column headerText="Data retorno diligência">
+						<p:calendar locale="pt"  value="#{p.dtRetorno}" pattern="dd/MM/yyyy" size="7"  />
+					</p:column>
+					<p:column headerText="N. Romanêio">
+						<p:inputText value="#{p.nrRomaneio}" size="7"  />
+					</p:column>
+					<p:column headerText="Data Romaneio">
+						<p:calendar locale="pt"  value="#{p.dtRomaneio}" pattern="dd/MM/yyyy" size="7"  />
+					</p:column>
+					<p:column headerText="">
+						<p:commandButton actionListener="#{pagamentoLojaMB.salvaPagamento(p)}" value="Salvar" update="form_pag:messages" />
+					</p:column>
+				</p:dataTable>
+				
+				<br />
+				<br />
+		</div>
+		<p:growl id="messages" showDetail="true" />
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

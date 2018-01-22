@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template.xhtml">
+<h:outputScript library="js" name="portuguese_calendar.js" />
+
+<ui:define name="content">
+
+	<h:form id="form_pag">
+		<div align="center">			
+				
+				<h1 style="font-size: 18px">Pagamento de Anuidade</h1>
+
+				<p:selectOneMenu id="lojas_combo" value="#{pagamentoIrmaoMB.lojaId}" >
+					<f:selectItems value="#{pagamentoIrmaoMB.getLojas()}" />
+					<p:ajax listener="#{pagamentoIrmaoMB.carregaPagamentos()}" update="p_list,total_lista" />
+				</p:selectOneMenu>
+				
+				 <br /><br />
+				<p:dataTable id="p_list" value="#{pagamentoIrmaoMB.pagamentos}" var="p" style="width:95%;text-align:center;font-size:10px;" emptyMessage="#{language.LBL_DATATABLE_NO_RECORD_FOUND}" selectionMode="single" rowKey="#{p.numero}" selection="#{pagamentoIrmaoMB.selectedPagamento}">
+					<p:column headerText="Nome do Irmão" >
+						<h:outputText value="#{p.obreiro.nome}" rendered="#{p.tipoEspecie.numero eq 2}" style="font-weight:bold" />
+						
+						<span style="font-style: italic;color:blue;"><h:outputText value="#{p.tipoEspecie.nome}" rendered="#{p.tipoEspecie.numero ne 2}" /></span>
+					</p:column>
+					<p:column headerText="Ano">
+							<p:spinner id="minMax" value="#{p.ano}"  max="#{pagamentoIrmaoMB.anoAtual}" min="1950" size="3" >
+								<p:ajax update="p_list" listener="#{pagamentoIrmaoMB.onChangeYearAtualizaPagamento(p)}"></p:ajax>  
+							</p:spinner>
+					</p:column>
+					<p:column headerText="Grau" style="width:50px;">
+						<p:selectOneMenu value="#{p.grau}" rendered="#{p.tipoEspecie.numero ne 2}" >
+							<f:selectItems value="#{pagamentoIrmaoMB.getGraus()}" />
+							<p:ajax update="p_list" listener="#{pagamentoIrmaoMB.onChangeYearAtualizaPagamento(p)}"></p:ajax>
+						</p:selectOneMenu>
+					</p:column>
+					<p:column headerText="Valor (R$)">
+						<p:inputText id="inputValor" value="#{p.valor}" size="7" /> 
+					</p:column>
+					<p:column headerText="Data comprovante Bancário">
+					
+					<p:calendar locale="pt"  value="#{p.dtComprovanteBancario}" pattern="dd/MM/yyyy"  size="7"  />
+					
+					</p:column>
+					<p:column headerText="N. Prancha">
+						<p:inputText value="#{p.numeroPrancha}" size="7"  />
+					</p:column>
+					<p:column headerText="Data prancha">
+					<p:calendar locale="pt"  value="#{p.dtPrancha}" pattern="dd/MM/yyyy" size="7" />
+			
+					</p:column>
+					<p:column headerText="Motivo Diligência">
+						<p:inputText value="#{p.motivo}"  size="7" />
+					</p:column>
+					<p:column headerText="Data emissão diligência">
+						<p:calendar locale="pt"  value="#{p.dtEmissao}" pattern="dd/MM/yyyy"  size="7"  />
+					</p:column>
+					<p:column headerText="Data retorno diligência">
+						<p:calendar locale="pt"  value="#{p.dtRetorno}" pattern="dd/MM/yyyy" size="7"  />
+					</p:column>
+					<p:column headerText="N. Romanêio">
+						<p:inputText value="#{p.numeroRomaneiro}" size="7"   />
+					</p:column>
+					<p:column headerText="Data Romaneio">
+						<p:calendar locale="pt"  value="#{p.dtRomaneio}" pattern="dd/MM/yyyy" size="7"  />
+					</p:column>
+					<p:column headerText="">
+						<p:commandButton actionListener="#{pagamentoIrmaoMB.salvaPagamento(p)}" value="Salvar" update="form_pag:messages" />
+					</p:column>
+				</p:dataTable>
+				Total de obreiros: <h:outputText value="#{pagamentoIrmaoMB.pagamentos.size()}" id="total_lista"></h:outputText>
+				 <p:contextMenu for="p_list" style="width:300px">			 
+			        <p:menuitem value="Incluir pagamento elevação" update="p_list,form_pag:messages" icon="fa fa-plus" actionListener="#{pagamentoIrmaoMB.incluirPagamentoElevacao}"/>
+			        <p:menuitem value="Incluir pagamento regularização" update="p_list,form_pag:messages" icon="fa fa-plus" actionListener="#{pagamentoIrmaoMB.incluirPagamentoRegularizacao}"/>
+    				<p:menuitem value="Excluir pagamento" update="p_list,form_pag:messages" icon="fa fa-minus" actionListener="#{pagamentoIrmaoMB.excluiPagamento}"/>    			
+    			
+    			</p:contextMenu>
+    
+				<br />
+				<br />
+		</div>
+	<p:growl id="messages" showDetail="true" />
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

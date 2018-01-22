@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+		<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+			type="text/css"></link>
+			
+		<div class="container" style="text-align: left">
+			<h1 style="font-size: 18px; text-align: center">Usuário</h1>
+			<h:form id="userForm" role="form" >
+				<h:inputHidden name="user_id" value="#{usuarioMB.usuario.id}" />
+
+
+				<div class="form-group">
+					<label for="user_name">Login</label>:
+					<h:inputText type="text"
+						id="user_name" name="user_name" class="form-control"  value="#{usuarioMB.usuario.login}" />
+				</div>
+				<div class="form-group" id="div_password">
+					<label for="user_password">Password</label>: 
+					<h:inputSecret type="password"
+						id="user_password" name="user_password"  class="form-control" value="#{usuarioMB.usuario.password}" />
+				</div>
+				
+				<div class="form-group">
+					Acesso de administrador:<br />
+					<h:selectOneRadio  value="#{usuarioMB.usuario.isAdmin}" layout="pageDirection" >
+						<div class="radio-inline">
+	  						<label><f:selectItem  name="is_admin_no" itemValue="#{false}"  itemLabel="Não" /></label>
+						</div>
+						
+						<div class="radio-inline">
+	  						<label><f:selectItem name="is_admin_yes" itemValue="#{true}"  itemLabel="Sim"  />  </label>
+						</div>
+					</h:selectOneRadio>
+				<div class="alert alert-info">
+  					<strong>Informação:</strong> O acesso de administrador possibilita a criação, alteração, e exclusão de usuários.
+				</div>
+				</div>
+				<div style="width:100%;text-align: right">
+					<h:commandButton type="submit" class="btn btn-success" value="Salvar" actionListener="#{usuarioMB.registrar}" />
+					&nbsp;
+					<h:commandButton type="submit" class="btn btn-primary" value="Cancelar" action="view_usuario" />
+				</div>
+				<br />				
+			</h:form>
+		</div>
+		<p:growl id="messages" showDetail="true" />
+	</ui:define>
+</ui:composition>
+</html>

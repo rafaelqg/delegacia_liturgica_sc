@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Loja web</title>
+	<link rel="shortcut icon" href="img/logo.png" type="favicon/ico" />
+	<style>
+body {
+	font-family: arial, verdana;
+	background-image: url("img/background.png");
+}
+</style>
+	<script>
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 1,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			currentText : 'Data Atual',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo Dia'
+		};
+	</script>
+
+	<!--
+	<script src="js/bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/jquery-1.12.3.min.js"></script>
+	 -->
+	
+	
+	
+	
+</h:head>
+
+<h:body>
+<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" ></link>
+	<f:view>
+		<h:form id="loginForm">
+			<div align="center">
+				<img src="img/logo.png" style="max-width: 200px; max-height: 200px" class="img-responsive" />
+			</div>
+			<div class="container"
+				style="background-color: #FFFFFF; border-radius: 25px; max-width: 600px">
+				
+				<div class="row">
+					<div class="col-sm-12" style="text-align: center">
+						<h1 style="font-size: 18px">Meus dados pessoais</h1>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>Obreiro:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<h:outputText value="#{login.obreiro.nome}"></h:outputText>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>e-mail:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<p:inputText value="#{login.obreiro.email}" style="width:90%"></p:inputText>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>CPF:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<p:inputMask value="#{login.obreiro.cpf}" mask="999.999.999-99"></p:inputMask>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>Profissão:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<p:inputText value="#{login.obreiro.profissao}"
+							style="width:90%" pattern="dd/MM/yyyy" />
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>Cargo:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<p:inputText value="#{login.obreiro.cargo}" style="width:90%"></p:inputText>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>Endereço residencial:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<p:inputTextarea value="#{login.obreiro.enderecoResidencial}"
+							style="width:90%"></p:inputTextarea>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>Endereço comercial:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<p:inputTextarea value="#{login.obreiro.enderecoComercial}"
+							style="width:90%"></p:inputTextarea>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>Nome esposa:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<p:inputText value="#{login.obreiro.nomeEsposa}"
+							style="width:90%"></p:inputText>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12 col-md-4">
+						<p:outputLabel>Data de nascimento da esposa:</p:outputLabel>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<p:calendar locale="pt"
+							value="#{login.obreiro.dtNascimentoEsposa}" style="width:90%"
+							pattern="dd/MM/yyyy" />
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-sm-12" style="text-align: right">
+					<p:commandButton actionListener="#{login.atualizarDadosPessoais}"
+						value="Atualizar" update="messages" />
+							&nbsp;&nbsp;
+						<p:commandButton action="#{login.sair}" value="Sair">
+							<p:confirm header="Confirmação"
+								message="Você deseja sair da tela de edição dos seus dados?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
+						<br /> &nbsp;
+					</div>
+				</div>
+			</div>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+				<br /> <br />
+			<p:growl id="messages" showDetail="true" />
+		</h:form>
+	</f:view>
+</h:body>
+</html>

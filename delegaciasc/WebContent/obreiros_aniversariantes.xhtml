@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template.xhtml">
+<ui:define name="content">
+<style>
+	.styleGreen {    
+	    background-color: #009900 !important;
+	    font-family: Arial,Helvetica,sans-serif;
+	}
+</style>
+	<h:form id="loginForm">
+	
+		
+				
+		<div align="center">			
+				<h1 style="font-size: 18px">Obreiro(s) Aniversariante(s) do Mês</h1>
+
+				&nbsp;
+				
+				<br />
+				<div style="text-align: right;margin-right: 40px;">
+					<h:commandLink value="Imprimir" action="#{obreiroMB.imprimirAniversariantesdoMes()}" target="_blank" >
+							
+						</h:commandLink>
+				</div>
+				<br/>
+				<p:dataTable value="#{obreiroMB.getObreirosAniversariantesMes()}" var="obreiro" style="width:95%;text-align:center" emptyMessage="#{language.LBL_DATATABLE_NO_RECORD_FOUND}" >
+					<p:column headerText="IME" sortBy="#{obreiro.ime}">
+						<h:outputText value="#{obreiro.ime}" />
+					</p:column>
+					<p:column headerText="Nome" sortBy="#{obreiro.nome}">
+						<h:outputText value="#{obreiro.nome}" />
+					</p:column>
+					<p:column headerText="Aniversário" >
+						<h:outputText value="#{obreiro.dtNascimento}">
+                			<f:convertDateTime pattern="dd/MM/yyyy" />
+            			</h:outputText>
+					</p:column>
+					<p:column headerText="Loja simbólica atual" >
+						<h:outputText value="#{obreiro.lojaSimbolicaAtual}" />
+					</p:column>
+					<p:column headerText="Loja filosófica atual">
+						<h:outputText value="#{obreiro.getLojaAtual().nome}" />
+					</p:column>
+					<p:column headerText="e-mail">
+						<h:outputText value="#{obreiro.email}" />
+					</p:column>
+					<p:column headerText="">
+						<h:commandLink value="Ver ficha (PDF)" action="#{obreiroMB.imprimirObreiro(obreiro)}" target="_blank" >
+							
+						</h:commandLink>
+					</p:column>
+					<p:column headerText="">
+						<p:commandButton value="Ver dados (Formulário)" action="#{obreiroMB.editar(obreiro)}" />
+					</p:column>
+				</p:dataTable>
+				Total de registros: <h:outputText value="#{obreiroMB.getObreirosAniversariantesMes().size()}" />
+				<br />
+				<h1 style="font-size: 18px">Obreiro(s) Aniversariante(s) do Dia</h1>
+				<br />		
+				<p:dataTable value="#{obreiroMB.getObreirosAniversariantesDia()}" var="obreiro" style="width:95%;text-align:center" emptyMessage="#{language.LBL_DATATABLE_NO_RECORD_FOUND}" >
+					<p:column headerText="IME" >
+						<h:outputText value="#{obreiro.ime}" />
+					</p:column>
+					<p:column headerText="Nome" >
+						<h:outputText value="#{obreiro.nome}" />
+					</p:column>
+					<p:column headerText="Aniversário" >
+						<h:outputText value="#{obreiro.dtNascimento}">
+                			<f:convertDateTime pattern="dd/MM/yyyy" />
+            			</h:outputText>
+					</p:column>
+					<p:column headerText="Loja simbólica atual" >
+						<h:outputText value="#{obreiro.lojaSimbolicaAtual}" />
+					</p:column>
+					<p:column headerText="Loja filosófica atual">
+						<h:outputText value="#{obreiro.getLojaAtual().nome}" />
+					</p:column>
+					
+					<p:column headerText="e-mail" >
+						<h:outputText value="#{obreiro.email}" />
+					</p:column>
+					<p:column headerText="">
+						<h:commandLink value="Ver ficha (PDF)" action="#{obreiroMB.imprimirObreiro(obreiro)}" target="_blank" >
+							
+						</h:commandLink>
+					</p:column>
+					<p:column headerText="">
+						<p:commandButton value="Ver dados (Formulário)" action="#{obreiroMB.editar(obreiro)}" />
+					</p:column>
+				</p:dataTable>
+				Total de registros: <h:outputText value="#{obreiroMB.getObreirosAniversariantesDia().size()}" />
+				<br />
+				<br />
+		</div>
+		<p:growl id="messages" showDetail="true" />
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

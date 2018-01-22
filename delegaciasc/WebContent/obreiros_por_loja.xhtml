@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template.xhtml">
+<ui:define name="content">
+	<h:form id="loginForm">
+		<div align="center">			
+				<h1 style="font-size: 18px">Obreiros por loja</h1>
+
+				<p:selectOneMenu id="lojas_combo" value="#{lojaMB.selectLojaId}" >
+					<f:selectItems value="#{lojaMB.getLojas()}" />
+					<p:ajax listener="#{lojaMB.buscaObreirosPorLoja()}" update="ol_list, total_registros" />
+				</p:selectOneMenu>
+				&nbsp;
+				
+				<p:commandLink value="Imprimir relatório" id="nonAjax" actionListener="#{lojaMB.imprimirObreirosPorLoja}" ajax="false" target="_blank" />
+
+				 <br /><br />
+				<p:dataTable id="ol_list" value="#{lojaMB.listaTabela}" var="ol" style="width:95%;text-align:center" emptyMessage="#{language.LBL_DATATABLE_NO_RECORD_FOUND}">
+					<p:column headerText="IME" sortBy="#{ol.ime}">
+						<h:outputText value="#{ol.ime}" />
+					</p:column>
+					<p:column headerText="Nome" sortBy="#{ol.nome}">
+						<h:outputText value="#{ol.nome}" />
+					</p:column>
+					<p:column headerText="Grau">
+						<h:outputText value="#{ol.grau}" sortBy="#{ol.grau}" />
+					</p:column>
+					<p:column headerText="Data de Iniciação" sortBy="#{ol.dataIniciacao}">
+						<h:outputText value="#{ol.dataIniciacao}" >
+							<f:convertDateTime pattern="dd/MM/YYYY" />
+						</h:outputText>
+					</p:column>
+					
+				</p:dataTable>
+				Total de registros: <h:outputText id="total_registros" value="#{lojaMB.listaTabela.size()}" />
+				<br />
+				<br />
+		</div>
+		<p:growl id="messages" showDetail="true" />
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

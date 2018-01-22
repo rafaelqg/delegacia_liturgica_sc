@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Loja web</title>
+	<link rel="shortcut icon" href="img/logo.png" type="favicon/ico" />
+	<style>
+body {
+	font-family: arial, verdana;
+	background-image: url("img/background.png");
+}
+</style>
+	<script>
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 1,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			currentText : 'Data Atual',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo Dia'
+		};
+	</script>
+
+</h:head>
+<body>
+<ui:composition template="template.xhtml">
+<ui:define name="content">
+	<f:view>
+		<h:form id="obreiroForm">
+			<div align="center">
+				<div
+					style="background-color: #FFFFFF; display: inline-block; border-radius: 25px;">
+					<br />
+					<h1 style="font-size: 18px">Dados do Obreiro</h1>
+					<p:panelGrid style="width:95%;">
+
+						<p:row>
+							<p:column style="width:40px">
+								<p:outputLabel>IME:</p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{obreiroMB.obreiro.ime}"></p:inputText>
+							</p:column>
+							<p:column style="width:40px">
+								<p:outputLabel>CIM:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.cim}"></p:inputText>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column style="width:40px">
+								<p:outputLabel>Nome Completo:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText id="nome_completo" value="#{obreiroMB.obreiro.nome}" style="width:90%"></p:inputText>	
+							</p:column>
+							<p:column style="width:40px">
+								<p:outputLabel>CPF:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputMask value="#{obreiroMB.obreiro.cpf}" mask="999.999.999-99"></p:inputMask>	
+							</p:column>
+						</p:row>
+
+
+						<p:row>
+							<p:column style="width:40px">
+								<p:outputLabel>Nome do pai:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.nomePai}"
+									style="width:90%"></p:inputText>
+							</p:column>
+							<p:column style="width:40px">
+								<p:outputLabel>Nome da mãe:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.nomeMae}"
+									style="width:90%"></p:inputText>
+							</p:column>
+						</p:row>
+
+
+						<p:row>
+
+							<p:column style="width:40px">
+								<p:outputLabel>Data de nascimento:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:calendar locale="pt"
+									value="#{obreiroMB.obreiro.dtNascimento}" style="width:350px"
+									pattern="dd/MM/yyyy" />
+							</p:column>
+							<p:column style="width:40px">
+								<p:outputLabel>Local de nascimento:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.localNascimento}"
+									style="width:90%"></p:inputText>
+							</p:column>
+						</p:row>
+
+
+						<p:row>
+							<p:column style="width:40px">
+								<p:outputLabel>RG:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.rg}"></p:inputText>
+							</p:column>
+
+							<p:column style="width:40px">
+								<p:outputLabel>e-mail:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.email}"
+									style="width:90%"></p:inputText>
+							</p:column>
+
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel>Endereço residencial:</p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputTextarea
+									value="#{obreiroMB.obreiro.enderecoResidencial}"
+									style="width:90%"></p:inputTextarea>
+							</p:column>
+
+							<p:column>
+								<p:outputLabel>Endereço comercial:</p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputTextarea value="#{obreiroMB.obreiro.enderecoComercial}"
+									style="width:90%"></p:inputTextarea>
+							</p:column>
+						</p:row>
+
+
+
+						<p:row>
+							<p:column style="width:40px">
+								<p:outputLabel>Profissão:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.profissao}" />
+							</p:column>
+							<p:column style="width:40px">
+								<p:outputLabel>Cargo(s):</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.cargo}"
+									style="width:90%"></p:inputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="width:40px">
+								<p:outputLabel>Rendimentos (R$):</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.rendimento}" />
+							</p:column>
+							<p:column style="width:40px">
+								<p:outputLabel>Outras informações:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputTextarea style="width:90%"
+									value="#{obreiroMB.obreiro.outrasInformacoes}"></p:inputTextarea>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column style="width:40px">
+								<p:outputLabel>Loja simbólica atual:</p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText style="width:90%"
+									value="#{obreiroMB.obreiro.lojaSimbolicaAtual}" />
+							</p:column>
+							<p:column style="width:40px">
+								<p:outputLabel>É mestre instalado:</p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectBooleanCheckbox
+									value="#{obreiroMB.obreiro.mestreInstalado}" />
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column style="width:40px">
+								<p:outputLabel>Nome esposa:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:inputText value="#{obreiroMB.obreiro.nomeEsposa}"
+									style="width:90%"></p:inputText>
+							</p:column>
+							<p:column style="width:40px">
+								<p:outputLabel>Data de nascimento da esposa:</p:outputLabel>
+							</p:column>
+							<p:column style="width:360px">
+								<p:calendar locale="pt"
+									value="#{obreiroMB.obreiro.dtNascimentoEsposa}"
+									style="width:350px" pattern="dd/MM/yyyy" />
+							</p:column>
+						</p:row>
+
+					</p:panelGrid>
+
+					<br />
+					<p:tabView id="tabView" dynamic="true" cache="false" style="width:95%;">
+						<p:tab title="Loja Simbólica">
+
+
+							<p:panelGrid style="width:95%;">
+
+								<p:row>
+									<p:column>
+										<p:outputLabel>Grau</p:outputLabel>
+									</p:column>
+									<p:column>
+										<p:outputLabel>Loja simbólica que foi iniciado/elevado/exaltado</p:outputLabel>
+									</p:column>
+									<p:column>
+										<p:outputLabel>Data</p:outputLabel>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel>1</p:outputLabel>
+									</p:column>
+									<p:column>
+										<p:inputText style="width:90%"
+											value="#{obreiroMB.obreiro.lojaIniciacao}"></p:inputText>
+									</p:column>
+									<p:column>
+										<p:calendar locale="pt"
+											value="#{obreiroMB.obreiro.dtIniciacao}" style="width:350px"
+											pattern="dd/MM/yyyy" />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel>2</p:outputLabel>
+									</p:column>
+									<p:column>
+										<p:inputText style="width:90%"
+											value="#{obreiroMB.obreiro.lojaElevacao}"></p:inputText>
+									</p:column>
+									<p:column>
+										<p:calendar locale="pt"
+											value="#{obreiroMB.obreiro.dtElevacao}" style="width:350px"
+											pattern="dd/MM/yyyy" />
+									</p:column>
+								</p:row>
+
+
+								<p:row>
+									<p:column>
+										<p:outputLabel>3</p:outputLabel>
+									</p:column>
+									<p:column>
+										<p:inputText style="width:90%"
+											value="#{obreiroMB.obreiro.lojaExaltacao}"></p:inputText>
+									</p:column>
+									<p:column>
+										<p:calendar locale="pt"
+											value="#{obreiroMB.obreiro.dtExaltacao}" style="width:350px"
+											pattern="dd/MM/yyyy" />
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+						</p:tab>
+						<p:tab title="Loja de perfeição">
+							<h:panelGrid  columns="1">
+								<p:commandButton value="Inserir" update="obreiroForm:panelObreiroGrau"
+									action="#{obreiroGrauMB.updateOptions(1)}"
+									oncomplete="PF('dlg1').show();" icon="fa fa-plus-circle" />
+									<br />
+								<p:dataTable id="rels_1" value="#{obreiroMB.lojaPerfeicao}" var="rel"
+									style="width:95%;text-align:center">
+									<p:column headerText="Loja de perfeição">
+										<h:outputText value="#{rel.loja.nome}" />
+									</p:column>
+									<p:column headerText="Grau">
+										<h:outputText value="#{rel.grau.numero}" />
+									</p:column>
+									<p:column headerText="Data">
+										<h:outputText value="#{rel.data}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+									</p:column>
+									<p:column headerText="Cargo(s) exercído(s)">
+										<h:outputText value="#{rel.cargo.descricao}" />
+									</p:column>
+									<p:column headerText="">
+										<p:commandButton action="#{obreiroGrauMB.setSelectedValues(rel,1)}" oncomplete="PF('dlg1').show();" value="Editar" icon="fa fa-edit"  update="obreiroForm:messages,obreiroForm:tabView, obreiroForm:panelObreiroGrau" />
+										
+										<p:commandButton actionListener="#{obreiroGrauMB.excluiRelacionamento(obreiroMB.obreiro.ime, rel.grau.numero)}" value="Excluir" icon="fa fa-trash"  update="obreiroForm:messages,obreiroForm:tabView" />		
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Capítulo Rosa Cruz">
+							<h:panelGrid columns="1">
+								<p:commandButton value="Inserir" update="obreiroForm:panelObreiroGrau"
+									action="#{obreiroGrauMB.updateOptions(2)}"
+									oncomplete="PF('dlg1').show();" icon="fa fa-plus-circle"  />
+									<br />
+								<p:dataTable id="rels_2" value="#{obreiroMB.rosaCruz}" var="rel"
+									style="width:95%;text-align:center">
+									<p:column headerText="Capítulo Rosa Cruz">
+										<h:outputText value="#{rel.loja.nome}" />
+									</p:column>
+									<p:column headerText="Grau">
+										<h:outputText value="#{rel.grau.numero}" />
+									</p:column>
+									<p:column headerText="Data/Iniciação">
+										<h:outputText rendered="#{rel.data  != null}" value="#{rel.data}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+										<h:outputText rendered="#{rel.data  == null}" value="-" />
+									</p:column>
+									<p:column headerText="Cargo(s) exercído(s)">
+										<h:outputText value="#{rel.cargo.descricao}" />
+									</p:column>
+									<p:column headerText="">
+										<p:commandButton action="#{obreiroGrauMB.setSelectedValues(rel,2)}" oncomplete="PF('dlg1').show();" value="Editar" icon="fa fa-edit"  update="obreiroForm:messages,obreiroForm:tabView, obreiroForm:panelObreiroGrau" />
+										
+										<p:commandButton actionListener="#{obreiroGrauMB.excluiRelacionamento(obreiroMB.obreiro.ime, rel.grau.numero)}" value="Excluir" icon="fa fa-trash"  update="obreiroForm:messages,obreiroForm:tabView" />		
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Conselho de Cavaleiros Kadosch">
+							<h:panelGrid columns="1">
+								<p:commandButton value="Inserir"  update="obreiroForm:panelObreiroGrau"
+									action="#{obreiroGrauMB.updateOptions(3)}"
+									oncomplete="PF('dlg1').show();" icon="fa fa-plus-circle" />
+									<br />
+								<p:dataTable id="rels_3" value="#{obreiroMB.cavaleirosKadosh}" var="rel"
+									style="width:95%;text-align:center">
+									<p:column headerText="Conselho de Cavaleiros Kadosch">
+										<h:outputText value="#{rel.loja.nome}" />
+									</p:column>
+									<p:column headerText="Grau">
+										<h:outputText value="#{rel.grau.numero}" />
+									</p:column>
+									<p:column headerText="Data/Iniciação">
+										<h:outputText value="#{rel.data}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+									</p:column>
+									<p:column headerText="Cargo(s) exercído(s)">
+										<h:outputText value="#{rel.cargo.descricao}" />
+									</p:column>
+									
+									<p:column headerText="">
+										<p:commandButton action="#{obreiroGrauMB.setSelectedValues(rel,3)}" oncomplete="PF('dlg1').show();" value="Editar" icon="fa fa-edit" update="obreiroForm:messages,obreiroForm:tabView, obreiroForm:panelObreiroGrau" />
+										
+										<p:commandButton actionListener="#{obreiroGrauMB.excluiRelacionamento(obreiroMB.obreiro.ime, rel.grau.numero)}" value="Excluir" icon="fa fa-trash"  update="obreiroForm:messages,obreiroForm:tabView" />		
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>
+						</p:tab>
+
+						<p:tab title="Consistório de Príncipes do Real Segredo">
+							<h:panelGrid columns="1">
+								<p:commandButton value="Inserir" update="obreiroForm:panelObreiroGrau"
+									action="#{obreiroGrauMB.updateOptions(4)}"
+									oncomplete="PF('dlg1').show();" icon="fa fa-plus-circle" />
+									<br />
+								<p:dataTable id="rels_4" value="#{obreiroMB.consistorioRealSegredo}"
+									var="rel" style="width:95%;text-align:center">
+									<p:column headerText="Consistório de Príncipes do Real Segredo">
+										<h:outputText value="#{rel.loja.nome}" />
+									</p:column>
+									<p:column headerText="Grau">
+										<h:outputText value="#{rel.grau.numero}" />
+									</p:column>
+									<p:column headerText="Data/Iniciação">
+										<h:outputText value="#{rel.data}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+									</p:column>
+									<p:column headerText="Cargo(s) exercído(s)">
+										<h:outputText value="#{rel.cargo.descricao}" />
+									</p:column>
+									
+									<p:column headerText="">
+										<p:commandButton action="#{obreiroGrauMB.setSelectedValues(rel,4)}" oncomplete="PF('dlg1').show();" value="Editar" icon="fa fa-edit" update="obreiroForm:messages,obreiroForm:tabView, obreiroForm:panelObreiroGrau" />
+										<p:commandButton actionListener="#{obreiroGrauMB.excluiRelacionamento(obreiroMB.obreiro.ime, rel.grau.numero)}" value="Excluir" icon="fa fa-trash" update="obreiroForm:messages,obreiroForm:tabView" />						
+									</p:column>
+									
+								</p:dataTable>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Tempo em cada grau">
+							<h:panelGrid columns="2" cellpadding="10">
+
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Anuidades">
+							<p:dataTable value="#{obreiroMB.listaPagamentoAnuidades}"
+								var="pagamento" style="width:95%;text-align:center">
+								<p:column headerText="Ano">
+									<h:outputText value="#{pagamento.ano}" />
+								</p:column>
+								<p:column headerText="Grau">
+									<h:outputText value="#{pagamento.grau}" rendered="#{pagamento.tipoEspecie.numero ne 2}" />
+								</p:column>
+								<p:column headerText="Tipo espécie">
+									<h:outputText value="#{pagamento.tipoEspecie.nome}" />
+								</p:column>
+								<p:column headerText="Loja Simbólica">
+									<h:outputText value="#{pagamento.loja.nome}" />
+								</p:column>
+								<p:column headerText="Valor (R$)">
+									<h:outputText value="#{pagamento.valor}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</p:column>
+								
+							</p:dataTable>
+						</p:tab>
+					</p:tabView>
+					<p:dialog id="panelObreiroGrau"  header="Grau do obreiro" widgetVar="dlg1" modal="true">
+				<h:panelGrid columns="2">
+					<h:outputText value="Loja:" />
+					<p:selectOneMenu value="#{obreiroGrauMB.selectedLojaId}">
+						<f:selectItems value="#{obreiroGrauMB.lojas}" />
+					</p:selectOneMenu>
+					<h:outputText value="Grau:" />
+					<p:selectOneMenu value="#{obreiroGrauMB.selectedGrauId}">
+						<f:selectItems value="#{obreiroGrauMB.graus}" />
+					</p:selectOneMenu>
+					<h:outputText value="Data:" />
+					<p:calendar locale="pt" value="#{obreiroGrauMB.data}"
+						style="width:350px" pattern="dd/MM/yyyy" />
+					<h:outputText value="Cargo:" />
+					<p:selectOneMenu value="#{obreiroGrauMB.selectedCargoId}">
+						<f:selectItems value="#{obreiroGrauMB.cargos}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<br />
+				<div style="width: 95%; text-align: center;">
+					<div style="float: left;">
+						<p:commandButton
+							actionListener="#{obreiroGrauMB.saveRelacionamento}"
+							value="Salvar" update="messages,tabView" oncomplete="PF('dlg1').hide()"  />
+					</div>
+					<div style="float: right;">
+						<p:commandButton action="#{obreiroGrauMB.sair}"
+							oncomplete="PF('dlg1').hide()" value="Voltar">
+							<!--   <p:confirm header="Confirmação"
+								message="Você deseja fechar esta tela de edição?"
+								icon="ui-icon-alert" /> -->
+						</p:commandButton>
+					</div>
+				</div>
+			</p:dialog>
+			
+					<br />
+
+					<div style="width: 95%; text-align: center;">
+						<div style="float: left;">
+							<p:commandButton actionListener="#{obreiroMB.atualizar}"
+								value="Atualizar" update="messages" />
+						</div>
+						<div style="float: right;">
+							<p:commandButton action="#{obreiroMB.sair}" value="Voltar">
+								<p:confirm header="Confirmação"
+									message="Você deseja voltar para tela de listagem de obreiros?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+						</div>
+					</div>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+					<br /> <br /> <br /> <br />
+				</div>
+			</div>
+
+			<p:growl id="messages" showDetail="true" />
+		</h:form>
+	</f:view>
+	</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Loja web</title>
+	<link rel="shortcut icon" href="img/logo.png" type="favicon/ico" />
+	<style>
+body {
+	font-family: arial, verdana;
+	background-image: url("img/background.png");
+}
+
+</style>
+<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+		type="text/css"></link>
+</h:head>
+<body>
+	<f:view>
+		<h:form id="loginForm">
+			<div align="center">
+				<h:graphicImage value="img/logo.png"
+					style="max-width: 200px; max-height: 200px" class="img-responsive" />
+			</div>
+	
+				<div class="container" style="background-color: #FFFFFF;border-radius: 25px;max-width: 400px">
+
+					<div class="row">
+						<div class="col-sm-12" style="text-align: center">
+							<h1 style="font-size: 18px">Autenticação</h1>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 col-md-4">
+							<p:outputLabel>CPF:&nbsp;</p:outputLabel>
+						</div>
+						<div class="col-sm-12 col-md-8">
+							<p:inputMask value="#{login.cpf}" mask="999.999.999-99"></p:inputMask>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-sm-12 col-md-4">
+							<p:outputLabel>IME:&nbsp;</p:outputLabel>
+						</div>
+						<div class="col-sm-12 col-md-8">
+							<p:inputText value="#{login.ime}" maxlength="6"></p:inputText>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12" style="text-align: center;">
+							&nbsp;<br />
+							<p:commandButton action="#{login.autenticar}" value="Autenticar"
+								update="messages" />
+							<br />&nbsp;
+
+						</div>
+					</div>
+				</div>
+
+			<p:growl id="messages" showDetail="true" />
+		</h:form>
+	</f:view>
+</body>
+</html>

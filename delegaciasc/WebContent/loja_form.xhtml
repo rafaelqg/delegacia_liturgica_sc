@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<script>
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 1,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			currentText : 'Data Atual',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo Dia'
+		};
+	</script>
+
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+		<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+			type="text/css"></link>
+			
+		<div class="container" style="text-align: left">
+			<h1 style="font-size: 18px; text-align: center">Loja</h1>
+			<h:form id="userForm" role="form" >
+				<h:inputHidden name="loja_id" value="#{lojaMB.loja.numero}" />
+
+
+				<div class="form-group">
+					<label for="nome">Nome</label>:
+					<h:inputText type="text"
+						id="nome" name="nome" class="form-control"  value="#{lojaMB.loja.nome}" />
+				</div>
+				
+				<div class="form-group">
+					<label for="local">Local</label>:
+					<h:inputText type="text"
+						id="local" name="local" class="form-control"  value="#{lojaMB.loja.local}" />
+				</div>
+				<div class="form-group">
+					<label for="endereco">Endereço</label>:
+					<h:inputText type="text"
+						id="endereco" name="endereco" class="form-control"  value="#{lojaMB.loja.enderecoCompleto}" />
+				</div>
+				<div class="form-group">
+					<label for="telefone">Telefone</label>:
+					<h:inputText type="text"
+						id="telefone" name="telefone" class="form-control"  value="#{lojaMB.loja.telefone}" />
+				</div>
+				<div class="form-group">
+					<label for="celular">Celular</label>:
+					<h:inputText type="text"
+						id="celular" name="celular" class="form-control"  value="#{lojaMB.loja.celular}" />
+				</div>
+				<div class="form-group">
+					<label for="email">email</label>:
+					<h:inputText type="text"
+						id="email" name="email" class="form-control"  value="#{lojaMB.loja.email}" />
+				</div>
+				
+				<div class="form-group">
+					<label for="data_fundacao">Data Fundação</label>:
+					<p:calendar locale="pt"
+									value="#{lojaMB.loja.dataFundacao}" style="width:350px"
+									pattern="dd/MM/yyyy" />
+				</div>
+			
+				
+
+				<div style="width:100%;text-align: right">
+					<h:commandButton type="submit" class="btn btn-success" value="Salvar" actionListener="#{lojaMB.registrar}" />
+					&nbsp;
+					<h:commandButton type="submit" class="btn btn-primary" value="Cancelar" action="lojas" />
+				</div>
+				<br />				
+			</h:form>
+		</div>
+		
+		<p:growl id="messages" showDetail="true" />
+		
+	</ui:define>
+	
+</ui:composition>
+</html>

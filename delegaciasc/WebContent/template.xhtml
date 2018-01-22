@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Loja web</title>
+	<link rel="shortcut icon" href="img/logo.png" type="favicon/ico" />
+	  
+	<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="js/bootstrap/js/bootstrap.min.js" rel="stylesheet" />
+	<link href="css/footer.css" rel="stylesheet" />
+	
+	<style>
+
+body {
+	font-family: arial, verdana;
+	background-image: url("img/background.png");
+}
+
+</style>
+
+
+</h:head>
+<body>
+	<table style="width: 100%;  margin-top: 0px; left: 0px;margin-left: 0px">
+		<tr>
+			<td style="text-align: center;vertical-align: middle;">
+			<h:form>
+		<p:menubar rendered="#{loginAdmin.admin}">
+			<p:submenu label="Obreiros" icon="ui-icon-document">
+				<p:menuitem value="Consulta" outcome="obreiros" icon="ui-icon-search"/>
+				<p:menuitem value="Consulta por Loja" outcome="obreiros_por_loja" icon="ui-icon-search" />
+				<p:separator />
+				<p:menuitem value="Aniversariantes" outcome="obreiros_aniversariantes" icon="fa fa-birthday-cake" />
+				
+				<p:separator />
+				<p:menuitem value="Histórico de alterações" outcome="historico_alteracoes" icon="ui-icon-search"  />
+				<p:separator />
+				<p:menuitem value="Novo obreiro" action="#{obreiroMB.novo}" icon="ui-icon-document" />
+				<p:separator />
+				<p:menuitem value="Atualização externa" outcome="index" icon="ui-icon-link" />
+				
+			</p:submenu>
+			
+		
+			<p:submenu label="Lojas" icon="ui-icon-document">
+				<p:menuitem value="Consulta" outcome="lojas" icon="ui-icon-search"/>
+				<p:menuitem value="Obreiros por Loja" outcome="obreiros_por_loja" icon="ui-icon-search" />
+			</p:submenu>
+			
+			<p:submenu label="Pagamentos" icon="ui-icon-document">
+				<p:menuitem value="Anuidade do irmão" outcome="anuidade_por_irmao" icon="ui-icon-search">	
+				</p:menuitem>
+				<p:menuitem value="Anuidade de loja" outcome="anuidade_por_corpo" icon="ui-icon-search">	
+				</p:menuitem>
+			</p:submenu>
+			<p:submenu label="Usuários" icon="ui-icon-person" rendered="#{loginAdmin.usuario.isAdmin}">
+				<p:menuitem value="Novo usuário" outcome="usuario_form" icon="ui-icon-plus" />	
+				<p:menuitem value="Usuários do sistema" outcome="view_usuario" icon="fa fa-users" />
+				<p:menuitem value="Log alterações" outcome="log_alteracoes_obreiro" icon="fa fa-book fa-fw" />		
+			</p:submenu>
+			<p:menuitem onclick="PF('changePassword').show();"  value="Alterar senha" icon="ui-icon-key">
+			</p:menuitem>
+			<p:menuitem action="#{loginAdmin.logout()}" value="Sair" icon="ui-icon-close">
+					<p:confirm header="Confirmação" message="Você deseja sair do sistema?" icon="ui-icon-alert" />
+			</p:menuitem>
+ 
+		</p:menubar>
+		
+		<p:dialog header="Alteração de senha" widgetVar="changePassword" modal="true" height="100">
+    		<h:outputText value="Informe a sua senha atual" />
+    		<br />
+    		<h:inputSecret value="#{loginAdmin.currentPassword}" name="current_password"></h:inputSecret>
+    		<br />
+    		<h:outputText value="Informe a nova senha" />
+    		<br />
+    		<h:inputSecret value="#{loginAdmin.newPassword}" name="new_password"></h:inputSecret>
+    		 <f:facet name="footer">
+                <p:commandButton value="Alterar senha" update="growl" actionListener="#{loginAdmin.alteraSenha}" oncomplete="PF('changePassword').hide();" />
+            </f:facet> 
+    		
+		</p:dialog>  
+		  <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+		
+	</h:form>
+			
+			
+			</td>
+		</tr>
+	</table>
+	
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+	
+	
+	<f:view>
+
+		<h:graphicImage value="img/logo.png"
+			style="width: 125px; height: 125px;position:absolute;top:-7px; right: 13px" />
+		<br /><br />
+		<div align="center">
+			<br /> <br />
+			<div style="background-color: #FFFFFF; min-width: 450px; max-width:90%; display: inline-block; border-radius: 25px;">
+
+				<ui:insert name="content">
+
+				</ui:insert>
+			</div>
+		</div>
+
+	</f:view>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />	
+	 <footer class="footer">
+      <div class="container" style="font-size:8pt; text-align: center">
+        <span class="text-muted" >
+        		<br />
+        		Av. Prefeito Osmar Cunha, 183, Ed. Ceisa Center - Bloco B - Sala 111  | Caixa Postal: 13064 - CEP 88010-320 - Florianópolis - SC <br />
+        		Fone (48) 3224 3350 - supreconsdelsc@ccmail.com.br
+        </span>
+      </div>
+    </footer>
+</body>
+</html>

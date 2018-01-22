@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template.xhtml">
+<ui:define name="content">
+<style>
+	.styleGreen {    
+	    background-color: #009900 !important;
+	    font-family: Arial,Helvetica,sans-serif;
+	}
+</style>
+	<h:form id="loginForm">
+		<div align="center">			
+				<h1 style="font-size: 18px">Obreiros</h1>
+				<p:outputLabel>Digite o IME ou nome do obreiro</p:outputLabel>:	
+				<p:inputText value="#{obreiroMB.criterio}" />
+				&nbsp;	
+				<p:commandButton value="Buscar"  actionListener="#{obreiroMB.getObreirosFiltro}" ajax="false" />
+				&nbsp;
+				<p:commandButton value="Ver todos" actionListener="#{obreiroMB.getObreiros}" ajax="false" />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<p:commandButton value="Incluir novo obreiro" action="#{obreiroMB.novo}" ajax="false" styleClass="styleGreen" />
+				<br />
+				<br />
+				<p:dataTable value="#{obreiroMB.lista}" var="obreiro" style="width:95%;text-align:center" emptyMessage="#{language.LBL_DATATABLE_NO_RECORD_FOUND}" rows="10" paginator="true">
+					<p:column headerText="IME" sortBy="#{obreiro.ime}">
+						<h:outputText value="#{obreiro.ime}" />
+					</p:column>
+					<p:column headerText="Nome" sortBy="#{obreiro.nome}">
+						<h:outputText value="#{obreiro.nome}" />
+					</p:column>
+					<p:column headerText="RG" sortBy="#{obreiro.rg}">
+						<h:outputText value="#{obreiro.rg}" />
+					</p:column>
+					<p:column headerText="CPF" sortBy="#{obreiro.cpf}">
+						<h:outputText value="#{obreiro.cpf}" />
+					</p:column>
+					<p:column headerText="e-mail" sortBy="#{obreiro.email}">
+						<h:outputText value="#{obreiro.email}" />
+					</p:column>
+					<p:column headerText="">
+						<h:commandLink value="Ver ficha" action="#{obreiroMB.imprimirObreiro(obreiro)}" target="_blank" >
+							
+						</h:commandLink>
+					</p:column>
+					<p:column headerText="">
+						<p:commandButton value="Alterar dados" action="#{obreiroMB.editar(obreiro)}" />
+					</p:column>
+				</p:dataTable>
+				Total de registros: <h:outputText id="total_registros" value="#{obreiroMB.lista.size()}" />
+				<br />
+		</div>
+		<p:growl id="messages" showDetail="true" />
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

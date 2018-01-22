@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+org.jboss.tools.openshift.ApplicationId=56add5ce2d5271e9f800014a
+org.jboss.tools.openshift.ApplicationName=web
+org.jboss.tools.openshift.Connection=https\://rafael.q.g%40hotmail.com@openshift.redhat.com
+org.jboss.tools.openshift.Domain=scg33
+org.jboss.tools.openshift.RemoteName=openshift
